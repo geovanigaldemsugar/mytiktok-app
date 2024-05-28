@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mytiktok</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .author {
+            color: #ff0050;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const urlInput = document.getElementById('url');
+            const submitButton = document.getElementById('submit-button');
+            const successMessage = document.getElementById('success-message');
+            const errorFailed = document.getElementById('error-message')
+            const invalidurl = document.getElementById('error-message-invalid-url')
+            const thumbnailContainer = document.getElementById('thumbnail-container');
+            const thumbnailImage = document.getElementById('thumbnail-image');
+            const thumbnailTitle = document.getElementById('thumbnail-title');
+            const thumbnailAuthor = document.getElementById('thumbnail-author');
+            const form = document.getElementById('url-form');
+
+
+            urlInput.addEventListener('input', function () {
+                if (urlInput.value.trim() !== '') {
+                    submitButton.disabled = false;
+                    submitButton.classList.remove('bg-gray-400', 'cursor-not-allowed');
+                    submitButton.classList.add('bg-blue-500', 'hover:bg-blue-600');
+                } else {
+                    submitButton.disabled = true;
+                    submitButton.classList.remove('bg-blue-500', 'hover:bg-blue-600');
+                    submitButton.classList.add('bg-gray-400', 'cursor-not-allowed');
+                }
+            });
+
+            form.addEventListener('submit', function (event) {
+                event.preventDefault();
+                const url = urlInput.value.trim();
+
+                if (url) {
+                    submitButton.disabled = true;
+                    submitButton.textContent = 'Downloading...';
+                    submitButton.classList.remove('bg-blue-500', 'hover:bg-blue-600');
+                    submitButton.classList.add('bg-gray-400', 'cursor-not-allowed');
+
+                    fetch('/info', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded'
+                        },
+                        body: new URLSearchParams({
+                            'url': url
+                        })
+                    })
+                        .then(response => {
+                            if (response.ok) {
+                                return response.json();
+                            } else {
+                                successMessage.classList.add('hidden')
+                                invalidurl.classList.add('hidden')
+                                errorFailed.classList.remove('hidden')
+                            };
+                        })
+                        .then(data => {
+                            if (data.success) {
+                                file_name = data.file_name
+                                // successMessage.classList.remove('hidden');
+                                errorFailed.classList.add('hidden')
+                                invalidurl.classList.add('hidden')
+
+
+                                // Update thumbnail, title, and author
+                                thumbnailImage.src = data.thumpnail_url;
+                                thumbnailTitle.textContent = data.title;
+                                thumbnailAuthor.textContent = `@${data.author}`;
+                                thumbnailContainer.classList.remove('hidden');
+                                fetch('/download', {
+                                    method: 'GET',
+                                    headers: {
+                                        'Content-Type': 'application/x-www-form-urlencoded'
+                                    },
+                                })
+
+                                    .then(response => {
+                                        if (response.ok) {
+                                            return response.json();
+                                        } else {
+
+                                        };
+                                    }).then(data => {
+                                        if (data.success) {
+                                            successMessage.classList.remove('hidden');
+                                            errorFailed.classList.add('hidden')
+                                            invalidurl.classList.add('hidden')
+                                            submitButton.textContent = 'Download';
+                                            submitButton.disabled = false;
+                                            submitButton.classList.remove('bg-gray-400', 'cursor-not-allowed');
+                                            submitButton.classList.add('bg-blue-500', 'hover:bg-blue-600');
+
+                                            const downloadUrl = `/videos/${file_name}`; // Use data.file_name from the JSON response
+                                            window.location.href = downloadUrl;
+
+
+                                        } else {
+                                            submitButton.textContent = 'Download';
+                                            submitButton.disabled = false;
+                                            submitButton.classList.remove('bg-gray-400', 'cursor-not-allowed');
+                                            submitButton.classList.add('bg-blue-500', 'hover:bg-blue-600');
+                                            successMessage.classList.add('hidden')
+                                            invalidurl.classList.add('hidden')
+                                            errorFailed.classList.remove('hidden')
+                                            thumbnailContainer.classList.add('hidden')
+
+                                        }
+                                    })
+                                    .catch(error => {
+                                        console.error('Error:', error);
+                                        submitButton.textContent = 'Download';
+                                        submitButton.disabled = false;
+                                        submitButton.classList.remove('bg-gray-400', 'cursor-not-allowed');
+                                        submitButton.classList.add('bg-blue-500', 'hover:bg-blue-600');
+                                        successMessage.classList.add('hidden')
+                                        invalidurl.classList.add('hidden')
+                                        errorFailed.classList.remove('hidden')
+                                        thumbnailContainer.classList.add('hidden')
+
+                                    });
+
+
+
+                            } else if (data.message == 'Url Invalid') {
+
+                                submitButton.textContent = 'Download';
+                                submitButton.disabled = false;
+                                submitButton.classList.remove('bg-gray-400', 'cursor-not-allowed');
+                                submitButton.classList.add('bg-blue-500', 'hover:bg-blue-600');
+                                successMessage.classList.add('hidden')
+                                errorFailed.classList.add('hidden')
+                                invalidurl.classList.remove('hidden')
+                                thumbnailContainer.classList.add('hidden')
+
+                            } else {
+                                submitButton.textContent = 'Download';
+                                submitButton.disabled = false;
+                                submitButton.classList.remove('bg-gray-400', 'cursor-not-allowed');
+                                submitButton.classList.add('bg-blue-500', 'hover:bg-blue-600');
+                                successMessage.classList.add('hidden')
+                                invalidurl.classList.add('hidden')
+                                errorFailed.classList.remove('hidden')
+                                thumbnailContainer.classList.add('hidden')
+
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                            submitButton.textContent = 'Download';
+                            submitButton.disabled = false;
+                            submitButton.classList.remove('bg-gray-400', 'cursor-not-allowed');
+                            submitButton.classList.add('bg-blue-500', 'hover:bg-blue-600');
+                            successMessage.classList.add('hidden')
+                            invalidurl.classList.add('hidden')
+                            errorFailed.classList.remove('hidden')
+                            thumbnailContainer.classList.add('hidden')
+
+                        });
+
+
+                }
+            });
+        });
+    </script>
+</head>
+
+<body class="bg-gray-100 flex items-center justify-center h-screen">
+    <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-lg">
+        <h1 class="text-2xl font-bold text-center mb-6">Mytiktok</h1>
+
+        <form id="url-form" method="POST">
+            <div class="mb-4">
+                <input type="url" id="url" name="url"
+                    placeholder="https://www.tiktok.com/@calebbpartain/video/7207942650564119854"
+                    class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    required>
+            </div>
+
+            <button id="submit-button" type="submit"
+                class="w-full bg-gray-400 text-white p-3 rounded-lg cursor-not-allowed transition duration-300"
+                disabled>Download</button>
+            <div id="success-message" class="hidden mt-4 text-green-500 text-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span class="ml-2">Downloaded Successfully</span>
+
+            </div>
+            <div id="error-message" class="hidden mt-4 text-red-500 text-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+                <span class="ml-2">Download Failed</span>
+            </div>
+            <div id="error-message-invalid-url" class="hidden mt-4 text-red-500 text-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+                <span class="ml-2">Url Invalid</span>
+            </div>
+        </form>
+        <div id="thumbnail-container" class="hidden bg-gray-1  rounded-lg mt-4 flex items-center justify-center">
+
+            <div class="w-24 h-24 mr-4 shadow-md flex-shrink-0">
+                <img id="thumbnail-image"
+                    src="https://p16-sign.tiktokcdn-us.com/obj/tos-useast5-p-0068-tx/012df75b3bce4f01b30fd4d1c6e547ae?x-expires=1716858000&x-signature=MfwjIZIvbOA40Q9LQJwaKThlxGQ%3D"
+                    alt="Thumbnail" class="w-full h-full object-cover rounded-lg">
+            </div>
+            <div>
+                <p id="thumbnail-title" class="text-md font-semibold mb-2">Sample Title</p>
+                <h2 id="thumbnail-author" class="text-sm text-red-500 font-bold">Author Name</h2>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
