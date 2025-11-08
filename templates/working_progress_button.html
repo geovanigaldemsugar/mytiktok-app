@@ -5,12 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mytiktok</title>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
-        * {
-            font-family: Arial, sans-serif !important;
+        .author {
+            color: #ff0050;
         }
-        
     </style>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
@@ -25,20 +24,17 @@
             const thumbnailAuthor = document.getElementById('thumbnail-author');
             const form = document.getElementById('url-form');
             const progressBar = document.getElementById('progress-bar');
-            const buttonColor = 'bg-rose-600';
-            const buttonColorHover = 'hover:bg-rose-700';
-            const buttonColorDisabled = 'bg-neutral-800';
 
             function updateButton(state, text) {
                 const buttonText = document.getElementById('button-text');
                 submitButton.disabled = state;
                 buttonText.textContent = text;
                 if (state) {
-                    submitButton.classList.remove(buttonColor, buttonColorHover);
-                    submitButton.classList.add(buttonColorDisabled);
+                    submitButton.classList.remove('bg-blue-600', 'hover:bg-blue-700');
+                    submitButton.classList.add('bg-gray-700');
                 } else {
-                    submitButton.classList.remove(buttonColorDisabled);
-                    submitButton.classList.add(buttonColor, buttonColorHover);
+                    submitButton.classList.remove('bg-gray-700');
+                    submitButton.classList.add('bg-blue-600', 'hover:bg-blue-700');
                 }
             }
 
@@ -136,25 +132,27 @@
     </script>
 </head>
 
-<body class="bg-neutral-950 flex items-center justify-center h-screen font-sans">
-    <div class="bg-neutral-900 p-8 rounded-lg shadow-md w-full max-w-lg">
-        <h1 class="text-2xl font-bold text-white text-center mb-6">TikTok Downloader</h1>
+<body class="bg-gray-900 flex items-center justify-center h-screen">
+    <div class="bg-gray-800 p-8 rounded-lg shadow-md w-full max-w-lg">
+        <h1 class="text-2xl font-bold text-white text-center mb-6">Mytiktok</h1>
 
         <form id="url-form" method="POST">
-            <div class="mb-4 bg-neutral-800 rounded-lg">
-                <input type="url" id="url" name="url" placeholder="Enter Tiktok Video URL"
-                    class="w-full p-3 border-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-600 text-stone-100"
+            <div class="mb-4">
+                <input type="url" id="url" name="url"
+                    placeholder="https://www.tiktok.com/@calebbpartain/video/7207942650564119854"
+                    class="w-full p-3 border border-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-grey"
                     required>
             </div>
 
             <button id="submit-button" type="submit"
-                class="relative w-full text-stone-100 p-3 rounded-lg transition duration-300 overflow-hidden">
+                class="relative w-full bg-gray-700 text-white p-3 rounded-lg transition duration-300 overflow-hidden"
+                disabled>
 
-                <div id="progress-bar" class="absolute left-0 top-0 h-full bg-rose-600 transition-all duration-300"
+                <div id="progress-bar" class="absolute left-0 top-0 h-full bg-blue-600 transition-all duration-300"
                     style="width: 0%"></div>
                 <span id="button-text" class="relative z-10">Download</span>
             </button>
-
+            
             <!-- <button id="submit-button" type="submit"
                 class="w-full bg-gray-700 text-white p-3 rounded-lg cursor-not-allowed transition duration-300"
                 disabled>Download
@@ -187,7 +185,7 @@
                 <span class="ml-2">Url Invalid</span>
             </div>
         </form>
-        <div id="thumbnail-container" class="hidden bg-gray-1 rounded-lg mt-4 flex items-center justify-center">
+        <div id="thumbnail-container" class="hidden bg-gray-1  rounded-lg mt-4 flex items-center justify-center">
 
             <div class="w-24 h-24 mr-4 shadow-md flex-shrink-0">
                 <img id="thumbnail-image"
@@ -195,7 +193,7 @@
                     alt="Thumbnail" class="w-full h-full object-cover rounded-lg">
             </div>
             <div>
-                <p id="thumbnail-title" class="text-md text-stone-100 font-semibold mb-2">Sample Title</p>
+                <p id="thumbnail-title" class="text-md text-white font-semibold mb-2">Sample Title</p>
                 <h2 id="thumbnail-author" class="text-sm text-gray-400 font-bold">Author Name</h2>
             </div>
         </div>
