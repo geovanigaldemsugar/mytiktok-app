@@ -7,7 +7,7 @@
 ![Docker Badge](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=fff&style=for-the-badge)
 
 ## Quick Installation Methods
-
+<!-- // trigger push -->
 ### 1.Clone Repository
 ```bash
 git clone https://github.com/geovanigaldemsugar/Mytiktok.git
