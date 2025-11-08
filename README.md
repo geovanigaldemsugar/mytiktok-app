@@ -7,7 +7,7 @@
 ![Docker Badge](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=fff&style=for-the-badge)
 
 ## Try it Now 
-[🚀 Launch App](https://example.com)
+[🚀 Launch App](https://tiktok-app.geo-server.cloud)
 
 
 ## Quick Installation Methods
