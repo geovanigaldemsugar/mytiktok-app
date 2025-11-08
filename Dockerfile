@@ -1,5 +1,5 @@
 
-FROM mcr.microsoft.com/playwright:focal
+FROM mcr.microsoft.com/playwright:v1.56.1-jammy
 
 #Update packages and install pip
 RUN apt-get update && apt-get install -y python3-pip
@@ -22,5 +22,5 @@ EXPOSE 5000
 # Define environment variable
 ENV FLASK_APP=app.py
 
-CMD [ "python", "app.py" ]
+CMD [ "python3", "app.py" ]
 

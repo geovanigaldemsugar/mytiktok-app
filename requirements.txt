@@ -1,4 +1,4 @@
-aiofiles
+aiofiles==25.1.0
 anyio==4.11.0
 asgiref==3.10.0
 blinker==1.9.0
