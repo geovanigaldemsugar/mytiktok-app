@@ -13,8 +13,8 @@ COPY ./ /app
 # install packages 
 RUN pip install --no-cache -r requirements.txt
 
-# install playwright browsers
-RUN python3 -m playwright install
+# install playwright browser
+RUN python3 -m playwright install chromium
 
 # Make port 5000 available to the world outside this container
 EXPOSE 5000
