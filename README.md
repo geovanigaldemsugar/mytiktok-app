@@ -12,7 +12,7 @@
 ## Quick Installation Methods
 ### 1.Clone Repository
 ```bash
-git clone https://github.com/geovanigaldemsugar/Mytiktok.git
+git clone https://github.com/geovanigaldemsugar/mytiktok-app.git
 cd mytiktok-app
 pip install -r requirements.txt
 python app.py
