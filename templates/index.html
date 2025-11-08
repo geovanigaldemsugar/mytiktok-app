@@ -25,8 +25,8 @@
             const thumbnailAuthor = document.getElementById('thumbnail-author');
             const form = document.getElementById('url-form');
             const progressBar = document.getElementById('progress-bar');
-            const buttonColor = 'bg-rose-600';
-            const buttonColorHover = 'hover:bg-rose-700';
+            const buttonColor = 'bg-rose-500';
+            const buttonColorHover = 'hover:bg-rose-600';
             const buttonColorDisabled = 'bg-neutral-800';
 
             function updateButton(state, text) {
@@ -143,14 +143,14 @@
         <form id="url-form" method="POST">
             <div class="mb-4 bg-neutral-800 rounded-lg">
                 <input type="url" id="url" name="url" placeholder="Enter Tiktok Video URL"
-                    class="w-full p-3 border-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-600 text-stone-100"
+                    class="w-full p-3 border-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-500 text-stone-100"
                     required>
             </div>
 
             <button id="submit-button" type="submit"
                 class="relative w-full text-stone-100 p-3 rounded-lg transition duration-300 overflow-hidden">
 
-                <div id="progress-bar" class="absolute left-0 top-0 h-full bg-rose-600 transition-all duration-300"
+                <div id="progress-bar" class="absolute left-0 top-0 h-full bg-rose-500 transition-all duration-300"
                     style="width: 0%"></div>
                 <span id="button-text" class="relative z-10">Download</span>
             </button>
