@@ -1,13 +1,10 @@
 # TikTok Downloader
-
+![Web App](demo.gif)
 
 ### A Simple and Clean TikTok  Web App for Downloading TicTok Videos
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
 ![TikTok](https://img.shields.io/badge/TikTok-%23000000.svg?style=for-the-badge&logo=TikTok&logoColor=white)
 ![Docker Badge](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=fff&style=for-the-badge)
-
-
-![Web App](demo.gif)
 
 ## Quick Installation Methods
 
