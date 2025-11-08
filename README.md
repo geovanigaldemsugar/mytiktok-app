@@ -7,26 +7,9 @@
 ![Docker Badge](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=fff&style=for-the-badge)
 
 ## Try it Now 
-<a href="https://tiktok-app.geo-server.cloud" style="
-  background:#040404;
-  color:white;
-  padding:8px 14px;
-  border-radius:6px;
-  text-decoration:none;
-  margin-right:10px;">
-  launch demo
-</a>
 [🚀 Launch App](https://example.com)
 
-<a href="https://tiktok-app.geo-server.cloud" style="
-  background:#040404;
-  color:white;
-  padding:8px 14px;
-  border-radius:6px;
-  text-decoration:none;
-  margin-right:10px;">
-  🚀 launch demo
-</a>
+
 ## Quick Installation Methods
 ### 1.Clone Repository
 ```bash
