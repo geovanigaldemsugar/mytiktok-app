@@ -21,12 +21,7 @@ python app.py
 
 #### Quick start with Docker Run
 ```bash
-docker run \
-  --name mytiktok-app \
-  -p 5000:5000 \
-  --restart unless-stopped \
-  -d \
-  dragoneyes11554/mytiktok-app:latest
+docker run -d -p 5000:5000 dragoneyes11554/mytiktok-app:latest
 
 ```
 #### Quick start with Docker Compose
