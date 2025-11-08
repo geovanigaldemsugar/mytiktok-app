@@ -8,7 +8,9 @@
 
 ## Try it Now 
 [🚀 Launch App](https://tiktok-app.geo-server.cloud)
-[<kbd> <br> 🚀 Launch App <br> </kbd>][https://tiktok-app.geo-server.cloud]
+[<kbd> <br> 🚀 Launch App <br> </kbd>][Link]
+
+[Link]: # 'https://tiktok-app.geo-server.cloud'
 
 ## Quick Installation Methods
 ### 1.Clone Repository
